@@ -28,4 +28,11 @@ class CashRegister:
     }
     self.previous_transactions.append(transaction)
     
+  def apply_discount(self):
+    if self.discount > 0:
+      self.total = self.total * (1 - (self.discount / 100))
+      return self.total
+    else:
+      return self.total
+    
 
