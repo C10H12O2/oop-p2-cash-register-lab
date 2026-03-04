@@ -20,7 +20,10 @@ class CashRegister:
       
   def add_item(self, item, price, quantity=1):
     self.total += (price * quantity)
-    self.items.append(item)
+    
+    for _ in range(quantity):
+      self.items.append(item)
+      
     transaction = {
       "item": item,
       "price": price,
@@ -33,15 +36,17 @@ class CashRegister:
       self.total = self.total * (1 - (self.discount / 100))
       return self.total
     else:
+      print("There is no discount to apply.")
       return self.total
     
-  def void_last_transaction(self):
-    if self.previous_transactions:
-      last_transaction = self.previous_transactions.pop()
-      
-      if last_transaction["item"] in self.items:
-        self.items.remove(last_transaction["item"])
-        
-        self.total -= (last_transaction["price"] * last_transaction["quantity"])
-      else:
-        print("There is no discount to apply")
+def void_last_transaction(self):
+        if self.previous_transactions:
+            last = self.previous_transactions.pop()
+            
+            self.total -= (last["price"] * last["quantity"])
+            
+            for _ in range(last["quantity"]):
+                if last["item"] in self.items:
+                    self.items.remove(last["item"])
+        else:
+            print("There is no transaction to void.")
