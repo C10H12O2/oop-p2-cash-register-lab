@@ -35,4 +35,13 @@ class CashRegister:
     else:
       return self.total
     
-
+  def void_last_transaction(self):
+    if self.previous_transactions:
+      last_transaction = self.previous_transactions.pop()
+      
+      if last_transaction["item"] in self.items:
+        self.items.remove(last_transaction["item"])
+        
+        self.total -= (last_transaction["price"] * last_transaction["quantity"])
+      else:
+        print("There is no transactions to void.")
