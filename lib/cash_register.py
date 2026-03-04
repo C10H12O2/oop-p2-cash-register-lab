@@ -44,4 +44,4 @@ class CashRegister:
         
         self.total -= (last_transaction["price"] * last_transaction["quantity"])
       else:
-        print("There is no transactions to void.")
+        print("There is no discount to apply")
